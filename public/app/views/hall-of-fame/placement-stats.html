@@ -1,0 +1,60 @@
+<div class="row page-titles">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>Hall of Fame 2019-20</h3>
+                        <h5 class="font-light m-t-0">Training & Placement Cell, IPS Academy Indore</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="placementStats.selectedProgram" ng-change="changedProgram();">
+                                <option ng-repeat="program in placementStats.programs">{{ program }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="placementStats.selectedBranch" ng-change="changeBranch();">
+                                <option value=""> -- Select Branch --</option>
+                                <option ng-repeat="branch in placementStats.branches">{{ branch }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <span class="ml-2 text-primary">Showing {{ placementStats.students.length }} {{ placementStats.selectedProgram }} {{ placementStats.selectedBranch }} Candidates.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-3 col-xlg-3 col-md-5" ng-repeat="student in placementStats.students">
+        <div class="card"> <img class="card-img" src="../assets/images/celebration.jpg" height="230" alt="Card image">
+            <div class="card-img-overlay card-inverse text-white social-profile d-flex justify-content-center" style="border-radius: 15px;">
+                <div class="align-self-center"> <!--<img src="../assets/images/users/1.jpg" class="img-circle" width="100">-->
+                    <h4 class="card-title">{{ student.Name }}</h4>
+                    <h6 class="card-subtitle" ng-if="student.Company">{{ student.Company }}</h6>
+                    <h6 class="text-white" ng-if="student.Stipend">{{ student.Stipend }} Per Month</h6>
+                    <p class="text-white" ng-if="student.Package">{{ student.Package }} LPA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

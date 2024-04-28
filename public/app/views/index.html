@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Description Meta tag -->
+    <meta name="description" content="Welcome to unofficial Placement Portal of The Institute of Engineering and Science at IPS Academy , maintained by anshdwivedi, IPS Academy Indore. To make recruitment session smoother for students, Training & Placement Cell will have a portal for handling the placement registration for companies visiting campus.">
+    <meta name="author" content="Ansh Dwivedi (anshdwivedi2002@gmail.com - IPS Academy Indore CSE 2025 - IPS Academy Indore)">
+    <meta name="keywords" content="Placement Portal, IPS Academy Indore, Online Platform Placements, Campus Recruitment, Training & Placement Cell, The Institute of Engineering and Science at IPS Academy ">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon/Final-Finished-logo-1-3.png"/>
+    <!-- Title Meta tag -->
+    <title>Placement Portal : IPS Academy Indore</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Font library -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/style.min.css" rel="stylesheet">
+    <!--Style-->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144843888-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-144843888-1');
+    </script>
+
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main" class="skin-blue fixed-layout logo-center lock-nav" ng-show="main.loadme" ng-cloak>
+
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Placement Portal : IPS Academy Indore</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <!-- Logo icon --><b>
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <img src="assets/images/favicon/Final-Finished-logo-1-3.png" alt="homepage" class="dark-logo" style="width: 40px;height: 40px;"/>
+                        <!-- Light Logo icon -->
+                        <img src="assets/images/favicon/Final-Finished-logo-1-3.png" alt="homepage" class="light-logo" style="width: 40px;height: 40px;"/>
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text --><span>
+                     <!-- dark Logo text -->
+                     <img src="assets/images/logo-text-placement.png" alt="homepage" class="dark-logo" style="width: 112px;height: 30px;"/>
+                    <!-- Light Logo text -->
+                     <img src="assets/images/logo-light-text-placement.png" class="light-logo" alt="homepage" style="width: 100px;height: 30px;"/></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item hidden-sm-up"> <a class="nav-link nav-toggler waves-effect waves-light" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
+                        <li class="nav-item d-none d-lg-block"><a class="nav-link nav-lock waves-effect waves-light" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
+
+                        <!-- Notifications Feature -->
+                        <li class="nav-item dropdown" ng-show="main.isLoggedIn">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-email"></i>
+                                <div ng-if="main.unreadCount > 0" class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu mailbox animated bounceInDown">
+                                <span class="with-arrow"><span class="bg-primary"></span></span>
+                                <ul>
+                                    <li>
+                                        <div class="drop-title bg-primary text-white">
+                                            <h4 class="m-b-0 m-t-5">{{ main.unreadCount }} New</h4>
+                                            <span class="font-light">Notification</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" ng-repeat="notif in main.notifications">
+                                                <div class="btn btn-danger btn-circle"><i class="fa fa-bell"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>{{ notif.title }} </h5>
+                                                    <span class="mail-desc">{{ notif.description }}</span>
+                                                    <span class="time"> {{ notif.timestamp | date : 'dd MMM yyyy, hh:mm a'}} </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <!-- All Notifications  -->
+                                    <li>
+                                        <a class="nav-link text-center m-b-5" href="/notifications"> <strong>All notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0" ng-show="main.isLoggedIn">
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/profile/{{ main.gender }}.png" alt="user" class="img-circle" width="30"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow"><span class="bg-primary"></span></span>
+                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
+                                    <div class=""><img src="assets/images/profile/{{ main.gender}}.png" alt="user" class="img-circle" width="60"></div>
+                                    <div class="m-l-10">
+                                        <h4 class="m-b-0">{{ main.student_name }}</h4>
+                                        <p class=" m-b-0"> {{ main.permission.toUpperCase() }} </p>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item" href="/profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                <a class="dropdown-item" href="/notifications"><i class="ti-user m-r-5 m-l-5"></i> My Notifications</a>
+                                <a class="dropdown-item" href="/timeline" ng-show="!main.authorized"><i class="ti-stats-up m-r-5 m-l-5"></i> My Timeline</a>
+                                <a class="dropdown-item" href="/achievement" ng-show="!main.authorized"><i class="ti-medall m-r-5 m-l-5"></i> My Achievements</a>
+                                <a class="dropdown-item" href="/announcements"><i class="ti-announcement m-r-5 m-l-5"></i> Announcements</a>
+                                <a class="dropdown-item" href="/settings"><i class="ti-settings m-r-5 m-l-5"></i> Account Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10"><a href="#" ng-click="main.logout();" class="btn btn-sm btn-success btn-rounded">Logout</a></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <div class="d-flex no-block nav-text-box align-items-center">
+                <span><img src="assets/images/favicon/Final-Finished-logo-1-3.png" alt="elegant admin template" style="width: 40px;height: 40px;"></span>
+                <a class="nav-lock waves-effect waves-dark ml-auto hidden-md-down" href="javascript:void(0)"><i class="mdi mdi-toggle-switch"></i></a>
+                <a class="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+            </div>
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li ng-show="main.isLoggedIn"> <a class="nav-toggler waves-effect waves-dark" href="/" aria-expanded="false"><i class="ti-home"></i><span class="hide-menu">Home</span></a></li>
+                        <li ng-show="!main.isLoggedIn"> <a class="nav-toggler waves-effect waves-dark" href="/login" aria-expanded="false"><i class="icon-login"></i><span class="hide-menu">Login </span></a></li>
+                        <li ng-show="main.isLoggedIn"> <a class="nav-toggler waves-effect waves-dark" href="/company-registration" aria-expanded="false"><i class="icon-briefcase"></i><span class="hide-menu">Company Registration</span></a></li>
+                        <li ng-show="main.isLoggedIn"> <a class="nav-toggler waves-effect waves-dark" href="/interview-experiences" aria-expanded="false"><i class="icon-rocket"></i><span class="hide-menu">Interview Experiences </span></a></li>
+                        <li ng-show="main.isLoggedIn && main.authorized"> <a class="nav-toggler waves-effect waves-dark" href="/add-new-company" aria-expanded="false"><i class="icon-briefcase"></i><span class="hide-menu">Add New Company</span></a></li>
+                        <li ng-show="main.isLoggedIn && main.authorized"> <a class="nav-toggler waves-effect waves-dark" href="/admin-management" aria-expanded="false"><i class="icon-fire"></i><span class="hide-menu">Admin Management</span></a></li>
+                        <li ng-show="main.isLoggedIn"> <a class="nav-toggler waves-effect waves-dark" href="/announcements" aria-expanded="false"><i class="ti-announcement"></i><span class="hide-menu">Announcements </span></a></li>
+                        <li ng-show="main.isLoggedIn && !main.authorized"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-user"></i><span class="hide-menu">User Profile</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a class="nav-toggler" href="/profile">Profile Page <i class="ti-user text-success"></i></a></li>
+                                <li><a class="nav-toggler" href="/red-flag-history">Red Flag History <i class="ti-alert text-danger"></i></a></li>
+                                <li><a class="nav-toggler" href="/timeline">Timeline <i class="ti-stats-up text-info"></i></a></li>
+                                <li><a class="nav-toggler" href="/notifications">Notifications <i class="ti-bell text-info"></i></a></li>
+                                <li><a class="nav-toggler" href="/achievement">Achievement <i class="ti-medall text-danger"></i></a></li>
+                                <li><a class="nav-toggler" href="/contributions">Contributions <i class="ti-crown text-success"></i></a></li>
+                                <li><a class="nav-toggler" href="/settings">Account Settings <i class="ti-settings text-success"></i></a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="nav-toggler waves-effect waves-dark" href="/team" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">Team</span></a></li>
+                        <li> <a class="nav-toggler waves-effect waves-dark" href="/technical" aria-expanded="false"><i class="icon-screen-desktop"></i><span class="hide-menu">Developer</span></a></li>
+                        <li> <a class="nav-toggler waves-effect waves-dark" href="/contact" aria-expanded="false"><i class="icon-phone"></i><span class="hide-menu">Contact Us </span></a></li>
+                        <li> <a class="nav-toggler waves-effect waves-dark" href="/placements" aria-expanded="false"><i class="ti-crown"></i><span class="hide-menu">Hall of Fame &nbsp;</span></a></li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div ng-show="main.home">
+                    <home ng-include="'app/views/layout/home.html'"></home>
+                </div>
+
+                <div class="ng-view" autoscroll="true"></div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            ©  Placement & Training Cell, IPS Academy Indore </a>
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- App config -->
+    <script src="/app/app.js"></script>
+    <script src="/app/routes.js"></script>
+
+    <!-- Angularjs Filters -->
+    <script src="/app/filters/angularFilters.js"></script>
+
+    <!-- Angular Controller files -->
+    <script src="/app/controllers/studentCtrl.js"></script>
+    <script src="/app/controllers/mainCtrl.js"></script>
+    <script src="/app/controllers/adminCtrl.js"></script>
+    <script src="/app/controllers/emailCtrl.js"></script>
+
+    <!-- Angular Custom File Model Directives -->
+    <script src="app/directives/fileModel.js"></script>
+
+    <!-- Angular Services -->
+    <script src="/app/services/adminServices.js"></script>
+    <script src="/app/services/studentServices.js"></script>
+    <script src="/app/services/authServices.js"></script>
+    <script src="app/services/uploadFileService.js"></script>
+
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="/assets/js/popper/popper.min.js"></script>
+    <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Menu sidebar-->
+    <script src="/assets/js/sidebarmenu.js"></script>
+    <!-- Export as Excel -->
+    <script type="text/javascript" src="/assets/js/saveAsExcel.js"></script>
+    <!-- Export as Excel -->
+    <script type="text/javascript" src="/assets/js/saveAsCSV.js"></script>
+
+    <!-- ============================================================== -->
+    <script src='/assets/js/textAngular/textAngular-rangy.min.js'></script>
+
+    <script src='/assets/js/textAngular/textAngular-sanitize.min.js'></script>
+
+    <script src='/assets/js/textAngular/textAngular.min.js'></script>
+
+
+</body>
+
+</html>

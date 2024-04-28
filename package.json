@@ -1,0 +1,28 @@
+{
+  "name": "placementips",
+  "version": "1.0.0",
+  "description": "Online Web Placement Portal for IPS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CSE'25",
+  "license": " ",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^8.6.0",
+    "express": "^4.16.3",
+    "express-zip": "^3.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.6",
+    "mongoose-title-case": "0.0.4",
+    "mongoose-validator": "^2.1.0",
+    "morgan": "^1.9.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.9.10",
+    "nodemon": "^1.18.3",
+    "request": "^2.88.2"
+  }
+}

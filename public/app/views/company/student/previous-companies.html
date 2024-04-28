@@ -1,0 +1,105 @@
+<div class="row page-titles" id="previousCompanies">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Previous Companies</h4>
+    </div>
+</div>
+
+<!-- Visible to ADMIN,SPC,FACULTY -->
+<div class="row" ng-if="main.authorized">
+    <div class="col-12">
+        <div class="form-group">
+            <select class="form-control" ng-model="main.passout_batch" ng-change="updateBatch(main.passout_batch);">
+                <option value=""> -- Select Batch --</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Searching Company by Name -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-material">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-line" placeholder="Type here to Search for Company" ng-model="companyName">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Previous Companies -->
+<div ng-show="previousCompanies.fetchedPreviousCompanies">
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-4 col-md-6" ng-repeat="company in previousCompanies.previousCompanies | orderBy : '-deadline_date' | filter : companyName">
+            <div class="card cc-widget">
+                <div class="card-body">
+                    <div class="d-flex no-block flex-row">
+                        <div class="round align-self-center round-success m-t-10 m-b-10"><i class="ti-briefcase"></i></div>
+                        <div class="m-l-10 align-self-center">
+                            <h4 class="m-b-0">{{ company.company_name | limitTo: 18 }}{{company.company_name.length > 18 ? '...' : '' }} <!--<span class="badge badge-pill badge-danger text-white" ng-show="getApplyStatusInCompany(company._id);">Applied</span> <span class="badge badge-pill badge-primary text-white" ng-show="!getApplyStatusInCompany(company._id);">Pending</span>--></h4>
+                            <h5 class="text-muted m-b-0"> {{ company.job_profile | limitTo: 20 }}{{company.job_profile.length > 20 ? '...' : '' }}</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex no-block flex-row m-t-20 cc-details text-center">
+                        <div class="col-lg-6 p-10 p-l-0 border-right">
+                            <h6 class="font-light">Package</h6><b class="growth">₹ {{company.package | package }}</b></div>
+                        <div class="col-lg-6 p-10">
+                            <h6 class="font-light">Last Date</h6><b class="down">{{ company.deadline_date | date : 'dd MMMM'}}</b>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="text-center">
+                        <a href="/company/{{company._id}}"><button type="button" class="btn btn-info btn-rounded"><span ng-show="!main.authorized">View More</span><span ng-show="main.authorized">Edit Now</span></button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-show="previousCompanies.noPreviousCompanies">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h3 class="card-title">No previous companies!</h3>
+                    <p class="card-text">No companies visited till now for campus recruitment this session.</p>
+                    <!--<a href="javascript:void(0)" class="btn btn-dark">Go somewhere</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pre Loader -->
+<div class="row" ng-show="!previousCompanies.fetchedPreviousCompanies">
+    <div class="col-md-12">
+        <div class="card-body text-center">
+            <!--<h4 class="card-title">Loading Announcements!</h4>-->
+            <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,626 @@
+<div ng-show="company.fetchedCompanyDetails && !main.blockedProfile">
+    <div ng-show="!company.deleteSuccessMsg">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor">{{ company.companyDetail.company_name}}'s Company Details</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title text-center"> {{ company.companyDetail.company_name}}</h4>
+                        <h6 class="card-subtitle text-center">{{ company.companyDetail.job_profile | uppercase }}</h6>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Company Name</label>
+                                    <h5><i class="ti-briefcase text-primary"></i> &nbsp; {{ company.companyDetail.company_name }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Company Website Link</label>
+                                    <h5><i class="ti-world text-primary"></i> <a href="{{ company.companyDetail.company_website_url }}" target="_blank"> &nbsp; {{ company.companyDetail.company_website_url }}</a> </h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Organization Type</label>
+                                    <h5><i class="icon-tag text-primary"></i> &nbsp; {{ company.companyDetail.organization_type || 'N/A' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Industry Sector</label>
+                                    <h5><i class="icon-tag text-primary"></i>  &nbsp; {{ company.companyDetail.industry_sector || 'N/A' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">About Company</label>
+                                    <h5 class="editor-box"><i class="ti-blackboard text-primary"></i>  &nbsp; {{company.companyDetail.about_company }} </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title text-center"> Job Profile</h4>
+                        <h6 class="card-subtitle text-center">Below are the job profile details</h6>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Job Profile</label>
+                                    <h5><i class="ti-briefcase text-primary"></i> &nbsp; {{ company.companyDetail.job_profile }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Passout Batch</label>
+                                    <h5><i class="icon-graduation text-primary"></i> &nbsp; {{ company.companyDetail.passout_batch || '2020' }} Batch</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Recruitment</label>
+                                    <h5><i class="icon-badge text-primary"></i> &nbsp; {{ company.companyDetail.recruitment }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted"> Duration</label>
+                                    <h5><i class="ti-time text-primary"></i>  &nbsp; {{ company.companyDetail.duration || 'Full Time' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Location of Posting</label>
+                                    <h5><i class="ti-location-pin text-primary"></i> &nbsp; {{ company.companyDetail.posting_location }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Tentative Date of Joining</label>
+                                    <h5><i class="ti-calendar text-primary"></i>  &nbsp; {{ company.companyDetail.joining_date  | date : 'dd MMM yyyy' || 'Not Disclosed yet!' }}</h5>
+                                </div>
+                            </div>
+                            <!-- /span -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Job Description</label>
+                                    <h5 class="editor-box"><i class="ti-blackboard text-primary"></i>  &nbsp; {{company.companyDetail.job_description }} </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title text-center"> Eligibility Details</h4>
+                        <h6 class="card-subtitle text-center">Below are the student eligibility details</h6>
+                        <hr>
+                        <div class="p-3 border shadow-sm rounded">
+                            <h4 class="card-title">Eligible Branches</h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12" ng-repeat="(key, value) in company.companyDetail.eligibility">
+                                    <ul class="list-style-none">
+                                        <li class="my-2">
+                                            <span class="font-weight-medium text-dark"><i class="ti-blackboard mr-2 text-primary"></i> <b>{{ key }}</b></span>
+                                        </li>
+                                        <div class="row">
+                                            <div class="col-lg-4" ng-repeat="(branch, value) in company.companyDetail.eligibility[key]">
+                                                <li class="my-1" ng-if="company.companyDetail.eligibility[key][branch] == true">
+                                                    <span><i class="icon-check mr-2 text-success"></i> {{ branch }}</span>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Minimum CGPA</label>
+                                    <h5><i class="ti-medall text-primary"></i> &nbsp; {{ company.companyDetail.min_cgpa }} CGPA</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Min. Marks in 10th</label>
+                                    <h5><i class="icon-trophy text-primary"></i> &nbsp; {{ company.companyDetail.min_10_percent || 'N/A'}} %</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Min. Marks in 12th</label>
+                                    <h5><i class="icon-trophy text-primary"></i> &nbsp; {{ company.companyDetail.min_12_percent || 'N/A' }} %</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Medical Requirements</label>
+                                    <h5><i class="ti-support text-primary"></i>  &nbsp; {{ company.companyDetail.medical_requirement || 'N/A' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Service Agreement</label>
+                                    <h5><i class="ti-link text-primary"></i> &nbsp; {{ company.companyDetail.service_agreement || 'N/A' }} <span ng-if="company.companyDetail.service_agreement == 'Yes'"> ( {{ company.companyDetail.service_agreement_duration }} )</span></h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Other Eligibility</label>
+                                    <h5><i class="ti-tag text-primary"></i>  &nbsp; {{ company.companyDetail.other_eligibility }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title text-center"> Package Details</h4>
+                        <h6 class="card-subtitle text-center">Below are the Package details</h6>
+                        <hr>
+                        <div class="p-3 border shadow-sm rounded">
+                            <div class="row">
+                                <div class="col-md-12" ng-repeat="(key, value) in company.companyDetail.eligibility">
+                                    <ul class="list-style-none">
+                                        <li class="my-2">
+                                            <span class="font-weight-medium text-dark"><i class="ti-blackboard mr-2 text-primary"></i> <b>{{ key }} PACKAGE </b></span>
+                                        </li>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Basic Pay</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].basic_pay || 'N/A'}} </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">HRA</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].hra || 'N/A'}} </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Perks & Bonus</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].perks_bonus || 'N/A' }} </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Gross</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].gross || 'N/A' }} </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Take Home</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].take_home || 'N/A' }} </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">CTC</label>
+                                                    <h5><i class="ti-wallet text-primary"></i> &nbsp; {{ company.companyDetail.package[key].ctc || company.companyDetail.package | package }} </h5>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Company Accommodation</label>
+                                    <h5><i class="ti-home text-primary"></i> &nbsp; {{ company.companyDetail.company_accommodation || 'N/A' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Other Facility</label>
+                                    <h5><i class="ti-gift text-primary"></i> &nbsp; {{ company.companyDetail.other_facility || 'N/A'}} </h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12" ng-if="company.companyDetail.selection_process">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title text-center"> Selection Process</h4>
+                        <h6 class="card-subtitle text-center">Below are the selection process details details</h6>
+                        <hr>
+                        <div class="p-3 border shadow-sm rounded">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="card-title">Selection Process</h4>
+                                    <hr>
+                                    <ul class="list-style-none">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Pre Placement Talk</label>
+                                                    <h5><i class="ti-blackboard text-primary"></i> &nbsp; {{ company.companyDetail.selection_process.pre_placement_talk.ppt || 'N/A' }} <span ng-if="company.companyDetail.selection_process.pre_placement_talk.ppt == 'Yes'">: {{ company.companyDetail.selection_process.pre_placement_talk.date | date : 'dd MMM yyyy' }} </span></h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Aptitude Test</label>
+                                                    <h5><i class="ti-clipboard text-primary"></i> &nbsp; {{ company.companyDetail.selection_process.aptitude_test.test || 'N/A' }}  <span ng-if="company.companyDetail.selection_process.aptitude_test.test == 'Yes'">: {{ company.companyDetail.selection_process.aptitude_test.date | date : 'dd MMM yyyy' }} </span></h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Technical Test</label>
+                                                    <h5><i class="ti-pencil-alt text-primary"></i> &nbsp; {{ company.companyDetail.selection_process.technical_test.test || 'N/A' }}  <span ng-if="company.companyDetail.selection_process.technical_test.test == 'Yes'">: {{ company.companyDetail.selection_process.technical_test.date | date : 'dd MMM yyyy' }}</span> </h5>
+                                                </li>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Group Discussion</label>
+                                                    <h5><i class="icon-people text-primary"></i> &nbsp; {{ company.companyDetail.selection_process.group_discussion.gd || 'N/A' }}  <span ng-if="company.companyDetail.selection_process.group_discussion.gd == 'Yes'">: {{ company.companyDetail.selection_process.group_discussion.date | date : 'dd MMM yyyy' }} </span></h5>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row text-center">
+                                            <div class="col-lg-12">
+                                                <li class="my-1">
+                                                    <label class="control-label text-muted">Personal Interview</label>
+                                                    <h5><i class="icon-star text-primary"></i> &nbsp; {{ company.companyDetail.selection_process.personal_interview.rounds || 'N/A' }} Rounds : {{ company.companyDetail.selection_process.personal_interview.date | date : 'dd MMM yyyy' }}  </h5>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Provision for Waitlist</label>
+                                    <h5><i class="icon-ghost text-primary"></i> &nbsp; {{ company.companyDetail.waitlist || 'N/A' }}</h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label text-muted">Final Offer to be Announcement</label>
+                                    <h5><i class="icon-badge text-primary"></i> &nbsp; {{ company.companyDetail.final_offer || 'N/A' }} </h5>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h4 class="m-b-0">Deadline </h4></div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ company.companyDetail.deadline_date | date : 'dd MMMM yyyy h:mm a'}} </h3>
+                        <p class="card-text"> Last Date to Apply</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12" ng-show="main.authorized">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <div>
+                                        <!--<a href="/editCompany/{{ company.companyDetail._id }}"><button class="btn btn-primary btn-rounded"><i class="ti-pencil"></i> &nbsp; Edit</button></a>-->
+                                        <a href="/editCompany/{{ company.companyDetail._id }}"><button class="btn btn-primary btn-rounded"><i class="ti-pencil"></i> &nbsp; Edit</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <button class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#deleteCompanyModal"><i class="ti-trash"></i> &nbsp; Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <a href="/registeredStudents/{{ company.companyDetail._id }}">
+                                        <button class="btn btn-success btn-rounded"><i class="ti-user"></i> &nbsp; View Registered Students</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <a href="/company-notification/{{ company.companyDetail._id }}">
+                                        <button class="btn btn-primary btn-rounded"><i class="ti-bell"></i> &nbsp; View Notification History</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Apply now Modal box   -->
+        <div class="modal fade" id="applyNowCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Are you sure to apply?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="buttom" class="btn btn-success" ng-click="company.oneClickApply();" data-dismiss="modal">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Company   -->
+        <div class="modal fade" id="deleteCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="deleteCompanyModal1">Deletion of any kind of data is not allowed. Contact Admin or Developer :)</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <!--<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="buttom" class="btn btn-danger" ng-click="company.deleteCompany();">Delete</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance now Modal box   -->
+    <div class="modal fade" id="AttendanceCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="AttendanceCompanyModal1">Update Attendance Status ?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="buttom" class="btn btn-success" ng-click="company.updateAttendanceStatus();" data-dismiss="modal">Update Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mark Attendance Company Model  -->
+    <div class="modal fade" id="markAttendanceCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content" ng-show="!company.markCompanyAttendanceSuccessMsg">
+                <form ng-submit="company.markCompanyAttendance(attendanceData);">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="markAttendanceCompanyModal1">Marks {{ company.companyDetail.company_name }}'s Attendance</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label">Enter OTP</label>
+                            <input type="text" class="form-control" ng-model="company.attendanceData.otp">
+                            <p class="text-danger"> {{ company.markCompanyAttendanceErrorMsg }}</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-content" ng-show="company.markCompanyAttendanceSuccessMsg">
+                <div class="modal-header">
+                    <h4 class="modal-title">Success</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="text-md-center">
+                            <i class="icon-check large-success-icon"></i>
+                            <h3 class="success-text">{{ company.markCompanyAttendanceSuccessMsg }}</h3>
+                            <button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw application Modal box   -->
+    <div class="modal fade" id="withdrawApplicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="withdrawApplicationModal1">Are you sure to withdraw your application?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="buttom" class="btn btn-success" ng-click="company.withdrawApplication();" data-dismiss="modal">Withdraw Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Error Message -->
+    <div class="alert alert-danger alert-rounded text-center" ng-show="company.errorMsg">
+        <strong> Oops!</strong> {{ company.errorMsg }}
+    </div>
+
+
+    <div style="text-align: center; margin-bottom: 20px;" ng-show="!main.authorized && !company.missedLastDate">
+        <button ng-disabled="company.applyStatus" type="button" id="oneClickApplyButton" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#applyNowCompanyModal"> One Click Apply</button>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;" ng-show="!main.authorized && !company.missedLastDate && company.applyStatus">
+        <button type="button" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#withdrawApplicationModal"><i class="icon-cross"></i> &nbsp; Withdraw Application</button>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;" ng-show="!main.authorized && company.missedLastDate && !company.applyStatus">
+        <button ng-disabled="company.missedLastDate" type="button" class="btn btn-danger btn-rounded" data-toggle="modal"><i class="ti-close"></i> &nbsp; Oops! You missed it.</button>
+    </div>
+
+
+    <div class="row" ng-show="main.authorized">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div>
+                            <button class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#AttendanceCompanyModal"><i class="icon-book-open"></i> &nbsp;<span ng-show="company.attendanceStatus">Close Attendance</span><span ng-show="!company.attendanceStatus">Start Attendance</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div>
+                            <button class="btn btn-outline-danger btn-rounded"> &nbsp;<span ng-show="company.attendanceStatus">OTP :  {{ company.company_otp }}</span><span ng-show="!company.attendanceStatus">Attendance Closed : No OTP Available</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="main.authorized && company.attendanceStatus">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div>
+                            <button class="btn btn-outline-primary btn-rounded" ng-click="company.doneWithAttendance();"> <i class="icon-check"></i> &nbsp;Done with the Attendance!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="!main.authorized && company.applyStatus && company.attendanceStatus && company.notMarkedAttendance">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div>
+                            <button class="btn btn-outline-info btn-rounded" data-toggle="modal" data-target="#markAttendanceCompanyModal"><i class="icon-pencil"></i> &nbsp;<span ng-show="!company.markedAttendance">Mark Attendance Now</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="company.deleteSuccessMsg" style="margin-top: 20px;">
+    <div class="col-lg-12" class="text-center">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-md-center">
+                    <i class="icon-check large-success-icon text-center"></i>
+                    <h3 class="success-text">Successfully deleted.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="card-body text-center" ng-show="!company.fetchedCompanyDetails">
+    <!--<h4 class="card-title">Loading Announcements!</h4>-->
+    <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

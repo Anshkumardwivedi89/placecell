@@ -1,0 +1,40 @@
+<div class="row page-titles">
+   <div class="col-md-5 align-self-center">
+       <h4 class="text-themecolor">Welcome to IPS Academy Placement Portal</h4>
+   </div>
+</div>
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+   <div class="col-12">
+       <div class="card">
+           <div class="card-body">
+               <h4 class="card-title">IPS Academy Placement Portal Reset Password</h4>
+               <h6 class="card-subtitle">Reset password for the placement session</h6>
+               <form class="form-material m-t-40" ng-submit="forgot.forgotPassword(logData);">
+                   <div class="form-group">
+                       <label>College ID </label>
+                       <input ng-disabled="forgot.disabledPassword" type="text" class="form-control form-control-line" placeholder="Enter your college id" ng-model="forgot.logData.college_id" required>
+                   </div>
+
+                   <div class="alert alert-success alert-rounded" ng-show="forgot.successMsgPassword">
+                       <i class="icon-check"></i>
+                       <strong> Yay!</strong> {{ forgot.successMsgPassword }}
+                   </div>
+
+                   <div class="alert alert-danger alert-rounded" ng-show="forgot.errorMsgPassword">
+                       <i class="icon-close"></i>
+                       <strong>Oops! </strong> {{ forgot.errorMsgPassword }}
+                   </div>
+
+                   <button ng-disabled="forgot.disabledPassword" type="submit" class="btn btn-success btn-rounded">Submit</button>
+                   <a href="/login" class="text-danger p-l-5">Login ?</a>
+
+               </form>
+           </div>
+       </div>
+   </div>
+</div>
+
+

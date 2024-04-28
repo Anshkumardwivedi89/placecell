@@ -1,0 +1,77 @@
+<div class="row" ng-show="!experience.fetchedInterviewExperience">
+    <div class="col-md-12">
+        <div class="card-body text-center">
+            <!--<h4 class="card-title">Loading Announcements!</h4>-->
+            <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interview Experience-->
+<div class="row page-titles" ng-show="experience.fetchedInterviewExperience">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>{{ experience.experience.title }}</h3>
+                        <h6 class="font-light m-t-0">Created by {{ experience.experience.author_name }}.</h6>
+                        <hr>
+                    </div>
+                    <div class="col-12">
+                        <div ng-bind-html="experience.experience.experience"></div>
+                        <br>
+                        <div>
+                            <span class="label label-success" style="margin-right: 10px;" ng-repeat="tag in experience.experience.tags">{{ tag }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Approve or pending change status -->
+<div class="row" ng-show="main.authorized">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="/editExperience/{{ experience.experience._id }}" class="btn btn-block btn-primary">Edit Experience</a>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-12 text-center">
+                        <p class="text-primary" ng-show="experience.loading">Updating status... Please wait!</p>
+                        <p class="text-danger" ng-show="experience.errorMsg">{{ experience.errorMsg }}</p>
+                        <p class="text-primary" ng-show="experience.successMsg">{{ experience.successMsg }}</p>
+                        <button ng-if="experience.experience.status=='pending'" class="btn btn-block btn-success" ng-click="experience.changeStatus();"> &nbsp; Approve Interview Experience</button>
+                        <button ng-if="experience.experience.status=='approved'" class="btn btn-block btn-danger" ng-click="experience.changeStatus();"> &nbsp; Disapprove Interview Experience</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

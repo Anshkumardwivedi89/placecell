@@ -1,0 +1,159 @@
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">A bit about us!</h4>
+    </div>
+    <!-- Only Admin -->
+    <div class="col-md-7 align-self-center text-right" ng-show="main.isLoggedIn && main.permission === 'admin'">
+        <div class="d-flex justify-content-end align-items-center">
+            <a href="/feedbacks" class="btn btn-primary d-none d-lg-block m-l-15"><i class="ti-clip"></i> View Feedbacks</a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Row - If User is LoggedIn -->
+<div class="row" ng-show="main.isLoggedIn">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <center class="m-t-30">
+                    <img src="assets/images/favicon/Final-Finished-logo-1-3.png" class="img-circle" width="150" />
+                    <h4 class="card-title m-t-10">To Be Decided</h4>
+                    <h6 class="card-subtitle">Insert Pending....</h6>
+                    <div class="row text-center">
+                        <div class="col-12"><a href="#" class="link"><i class="ti-crown"></i> <font class="font-medium">CSE'25 IPS Academy Indore</font></a></div>
+                    </div>
+                </center>
+            </div>
+            <div>
+                <hr> </div>
+            <div class="card-body">
+                <small class="text-muted">Email address </small>
+                <h6>anshdwivedi2002@gmail.com</h6>
+                <small class="text-muted p-t-30 db">Contact No.</small>
+                <h6>+91 8989409815</h6>
+                <small class="text-muted p-t-30 db">Social Profile</small>
+                <br/>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-github"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-link"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-facebook"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-linkedin"></i></button></a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#" role="tab">Feedback</a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile" role="tabpanel">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" ng-submit="technical.sendFeedback(feedbackData)">
+                            <div class="sl-item">
+                                <div class="sl-right">
+                                    <div>
+                                        <blockquote class="m-t-10">
+                                            We would like your feedback to improve our website! What is your opinion?
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" id="info" class="btn btn-outline-info" style="width: 10rem;height: 5rem;margin-bottom: 5px;" ng-click="technical.selectFeedbackBox('info')"><i class="ti-comments-smiley"></i> &nbsp;Suggestion</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" id="danger" class="btn btn-outline-danger" style="width: 10rem;height: 5rem;margin-bottom: 5px;" ng-click="technical.selectFeedbackBox('danger')"><i class="ti-face-sad"></i> &nbsp;Bug!</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" id="primary" class="btn btn-outline-primary" style="width: 10rem;height: 5rem;margin-bottom: 5px;" ng-click="technical.selectFeedbackBox('primary')"><i class="ti-face-smile"></i> &nbsp;Compliment</button>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+
+                                <!-- Feedback -->
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Your Feedback</label>
+                                        <div class="col-md-12">
+                                            <textarea type="text" rows="5" class="form-control form-control-line" ng-model="technical.feedbackData.feedback" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Loading Message -->
+                            <div class="alert alert-primary alert-rounded" ng-show="technical.loading">
+                                <strong> Loading!</strong> Hold on! your message is on the way...
+                            </div>
+                            <!-- Error Message -->
+                            <div class="alert alert-danger alert-rounded" ng-show="technical.errorMsg">
+                                <i class="ti-face-sad"></i>
+                                <strong> Oops!</strong> {{ technical.errorMsg }}!
+                            </div>
+
+                            <!-- Success Msg -->
+                            <div class="alert alert-success alert-rounded" ng-show="technical.successMsg">
+                                <i class="ti-face-smile"></i>
+                                <strong> Yay!</strong> {{ technical.successMsg }}
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button ng-disabled ="technical.successMsg"  type="submit" class="btn btn-success">Shoot!</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+
+
+
+<!-- Row - If User is not logged In.-->
+<div class="row" ng-show="!main.isLoggedIn">
+    <!-- Column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <center class="m-t-30">
+                    <img src="assets/images/favicon/Final-Finished-logo-1-3.png" class="img-circle" width="150" />
+                    <h4 class="card-title m-t-10">To Be Decided</h4>
+                    <h6 class="card-subtitle">Pending</h6>
+                    <div class="row text-center">
+                        <div class="col-12"><a href="#" class="link"><i class="ti-crown"></i> <font class="font-medium">CSE'25 IPS Academy Indore</font></a></div>
+                    </div>
+                </center>
+            </div>
+            <div>
+                <hr> </div>
+            <div class="card-body text-center">
+                <small class="text-muted">Email address </small>
+                <h6>anshdwivedi2002@gmail.com</h6>
+                <small class="text-muted p-t-30 db">Contact No.</small>
+                <h6>8989409815</h6>
+                <small class="text-muted p-t-30 db">Social Profile</small>
+                <br/>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-github"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-link"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-facebook"></i></button></a>
+                <a href="" target="_blank"><button class="btn btn-circle btn-secondary"><i class="icon-social-linkedin"></i></button></a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
